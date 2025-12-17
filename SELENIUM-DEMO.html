@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1: Selenium Automation Live Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+        .section {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        .section p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            margin: 10px 0;
+            line-height: 1.4;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #764ba2;
+        }
+        .test-results {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border: 2px solid #e0e0e0;
+        }
+        .test-case {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 5px solid #ddd;
+        }
+        .test-pass {
+            background: #d4edda;
+            border-left-color: #28a745;
+            color: #155724;
+        }
+        .test-fail {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+            color: #721c24;
+        }
+        .demo-area {
+            grid-column: 1 / -1;
+            background: white;
+            padding: 30px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+        }
+        .demo-area h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-right: 10px;
+            width: 200px;
+        }
+        .output {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-family: monospace;
+            min-height: 100px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .timestamp {
+            color: #999;
+            font-size: 12px;
+        }
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CODTECH Task 1: Selenium Automation</h1>
+            <p>Live Interactive Demo - WebDriver Test Automation Framework</p>
+        </header>
+
+        <div class="content">
+            <div class="section">
+                <h2>Project Overview</h2>
+                <p>This project demonstrates automated testing using <strong>Selenium WebDriver</strong> with the <strong>Page Object Model (POM)</strong> design pattern.</p>
+                <div style="margin-top: 15px;">
+                    <span class="badge">Java</span>
+                    <span class="badge">Selenium 4.15</span>
+                    <span class="badge">TestNG 7.8.1</span>
+                </div>
+                <p style="margin-top: 15px;">Key Features:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Page Object Model implementation</li>
+                    <li>Explicit wait strategies</li>
+                    <li>TestNG framework integration</li>
+                    <li>Comprehensive test scenarios</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Test Scenarios</h2>
+                <p><strong>Login Functionality Test:</strong> Validates user authentication and session management.</p>
+                <div class="code-block">@Test
+public void testLoginSuccess() {
+  loginPage.enterUsername("testuser");
+  loginPage.enterPassword("password123");
+  loginPage.clickLogin();
+  assertTrue(dashboardPage.isDisplayed());
+}</div>
+                <p style="margin-top: 15px;"><strong>Navigation Test:</strong> Ensures proper page navigation flow.</p>
+                <div class="code-block">@Test
+public void testNavigation() {
+  homePage.navigateTo(baseURL);
+  homePage.clickAboutLink();
+  assertEquals(aboutPage.getPageTitle(), 
+              "About Us");
+}</div>
+            </div>
+
+            <div class="demo-area">
+                <h2>Interactive Demo: Simulate Test Execution</h2>
+                <p>Enter test credentials and simulate a login test execution:</p>
+                
+                <div style="margin-top: 20px;">
+                    <label>Username:</label>
+                    <input type="text" id="username" placeholder="Enter username" value="testuser">
+                </div>
+                
+                <div style="margin-top: 10px;">
+                    <label>Password:</label>
+                    <input type="password" id="password" placeholder="Enter password" value="password123">
+                </div>
+                
+                <button onclick="runLoginTest()">Run Login Test Simulation</button>
+                <button onclick="runFullTestSuite()">Run Full Test Suite</button>
+                <button onclick="clearOutput()">Clear Output</button>
+                
+                <div class="test-results">
+                    <h3>Test Execution Output:</h3>
+                    <div class="output" id="testOutput">
+                        <p style="color: #999;">Test results will appear here...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Repository: <strong>task-1-selenium-automation</strong></p>
+            <p>Framework: Selenium WebDriver 4.15 | Build Tool: Maven | Testing: TestNG 7.8.1</p>
+            <p style="margin-top: 10px; font-size: 12px;">CODTECH Internship - Automated Testing Task</p>
+        </footer>
+    </div>
+
+    <script>
+        function log(message, type = 'info') {
+            const output = document.getElementById('testOutput');
+            const timestamp = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            
+            let className = 'test-case';
+            if (type === 'pass') className += ' test-pass';
+            if (type === 'fail') className += ' test-fail';
+            if (type === 'info') className += ' test-case';
+            
+            entry.className = className;
+            entry.innerHTML = `<span class="timestamp">[${timestamp}]</span> ${message}`;
+            output.appendChild(entry);
+            output.scrollTop = output.scrollHeight;
+        }
+
+        function clearOutput() {
+            document.getElementById('testOutput').innerHTML = '<p style="color: #999;">Ready to run tests...</p>';
+        }
+
+        function runLoginTest() {
+            clearOutput();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            log('INFO: Starting LoginTest scenario...', 'info');
+            log(`INFO: Initializing WebDriver...`, 'info');
+            setTimeout(() => log('PASS: WebDriver initialized successfully', 'pass'), 500);
+            
+            setTimeout(() => log(`INFO: Navigating to login page...`, 'info'), 1000);
+            setTimeout(() => log('PASS: Login page loaded', 'pass'), 1500);
+            
+            setTimeout(() => log(`INFO: Entering username: ${username}`, 'info'), 2000);
+            setTimeout(() => log('PASS: Username field found and filled', 'pass'), 2500);
+            
+            setTimeout(() => log(`INFO: Entering password`, 'info'), 3000);
+            setTimeout(() => log('PASS: Password field found and filled', 'pass'), 3500);
+            
+            setTimeout(() => log('INFO: Clicking login button...', 'info'), 4000);
+            setTimeout(() => log('PASS: Login button clicked successfully', 'pass'), 4500);
+            
+            setTimeout(() => log('INFO: Validating dashboard appearance...', 'info'), 5000);
+            setTimeout(() => log('PASS: Dashboard displayed - Login successful!', 'pass'), 5500);
+            
+            setTimeout(() => log('INFO: Test completed in 5.5 seconds', 'info'), 6000);
+        }
+
+        function runFullTestSuite() {
+            clearOutput();
+            
+            log('INFO: Running Full Test Suite...', 'info');
+            log('INFO: Total Tests: 3', 'info');
+            
+            setTimeout(() => {
+                log('TEST 1: testLoginSuccess()', 'info');
+                log('...setup', 'info');
+            }, 500);
+            
+            setTimeout(() => log('...navigating', 'info'), 1000);
+            setTimeout(() => log('...entering credentials', 'info'), 1500);
+            setTimeout(() => log('PASS: testLoginSuccess() - 2.5s', 'pass'), 2500);
+            
+            setTimeout(() => {
+                log('TEST 2: testNavigationFlow()', 'info');
+                log('...setup', 'info');
+            }, 3000);
+            
+            setTimeout(() => log('...clicking navigation links', 'info'), 3500);
+            setTimeout(() => log('...validating page transitions', 'info'), 4000);
+            setTimeout(() => log('PASS: testNavigationFlow() - 1.8s', 'pass'), 4800);
+            
+            setTimeout(() => {
+                log('TEST 3: testPageObjectModel()', 'info');
+                log('...verifying POM structure', 'info');
+            }, 5300);
+            
+            setTimeout(() => log('...validating element locators', 'info'), 5800);
+            setTimeout(() => log('PASS: testPageObjectModel() - 1.5s', 'pass'), 6300);
+            
+            setTimeout(() => {
+                log('=== TEST SUITE SUMMARY ===', 'info');
+                log('Tests Run: 3', 'pass');
+                log('Passed: 3', 'pass');
+                log('Failed: 0', 'pass');
+                log('Total Duration: 6.3 seconds', 'info');
+                log('Status: SUCCESS', 'pass');
+            }, 7000);
+        }
+
+        window.onload = function() {
+            log('Selenium Test Framework Ready', 'info');
+            log('Click a button above to run tests', 'info');
+        };
+    </script>
+</body>
+</html>
