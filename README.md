@@ -2,6 +2,10 @@
 
 CODTECH Internship Task 1: Selenium WebDriver Test Automation - Automated testing of login and navigation functionality using Page Object Model (POM)
 
+## 🎬 Live Demo
+
+**[View Interactive Demo](https://htmlpreview.github.io/?https://github.com/wasimahamadsamani/task-1-selenium-automation/blob/main/SELENIUM-DEMO.html)**
+
 ## Project Overview
 
 This is a comprehensive Selenium WebDriver automation framework implementing the Page Object Model (POM) design pattern for testing web applications. The project demonstrates industry-standard practices for automated testing including locator strategies, wait mechanisms, and test organization.
@@ -39,12 +43,14 @@ This is a comprehensive Selenium WebDriver automation framework implementing the
 ## Installation
 
 ### Step 1: Clone the Repository
+
 ```bash
 git clone https://github.com/wasimahamadsamani/task-1-selenium-automation.git
 cd task-1-selenium-automation
 ```
 
 ### Step 2: Install Dependencies
+
 ```bash
 mvn clean install
 ```
@@ -65,20 +71,20 @@ task-1-selenium-automation/
 │   ├── main/
 │   │   └── java/
 │   │       ├── pages/
-│   │       │   ├── LoginPage.java          # Login page objects and methods
-│   │       │   └── DashboardPage.java      # Dashboard page objects
+│   │       │   ├── LoginPage.java
+│   │       │   └── DashboardPage.java
 │   │       ├── utils/
-│   │       │   ├── DriverManager.java      # WebDriver management
-│   │       │   └── WaitManager.java        # Wait strategies
+│   │       │   ├── DriverManager.java
+│   │       │   └── WaitManager.java
 │   │       └── base/
-│   │           └── BaseTest.java           # Base test class
+│   │           └── BaseTest.java
 │   └── test/
 │       └── java/
 │           └── tests/
-│               ├── LoginTest.java          # Login test cases
-│               └── NavigationTest.java     # Navigation test cases
-├── pom.xml                                  # Maven configuration
-├── testng.xml                               # TestNG configuration
+│               ├── LoginTest.java
+│               └── NavigationTest.java
+├── pom.xml
+├── testng.xml
 └── README.md
 ```
 
@@ -124,16 +130,19 @@ alert.accept();
 ## Running Tests
 
 ### Run All Tests
+
 ```bash
 mvn test
 ```
 
 ### Run Specific Test Class
+
 ```bash
 mvn test -Dtest=LoginTest
 ```
 
 ### Run with TestNG
+
 ```bash
 mvn test -DsuiteXmlFile=testng.xml
 ```
@@ -141,18 +150,21 @@ mvn test -DsuiteXmlFile=testng.xml
 ## Test Scenarios
 
 ### Scenario 1: Valid Login
+
 - User enters valid credentials
 - System authenticates user
 - User redirected to dashboard
 - Expected: Login successful
 
 ### Scenario 2: Invalid Credentials
+
 - User enters invalid username/password
 - System rejects login
 - Error message displayed
 - Expected: Error message shown
 
 ### Scenario 3: Navigation Flow
+
 - User logs in
 - User navigates to different pages
 - Page content loads correctly
@@ -163,6 +175,7 @@ mvn test -DsuiteXmlFile=testng.xml
 The POM pattern separates test scripts from page-specific code:
 
 **LoginPage.java:**
+
 ```java
 public class LoginPage {
     private WebDriver driver;
@@ -189,6 +202,7 @@ public class LoginPage {
 ```
 
 **LoginTest.java:**
+
 ```java
 public class LoginTest extends BaseTest {
     @Test
@@ -240,10 +254,6 @@ public class LoginTest extends BaseTest {
 ✅ Page Objects Implemented
 ✅ Tests Configured
 ✅ Documentation Complete
-
-## Author
-
-Wasim Ahamad Samani
 
 ## License
 
